@@ -93,5 +93,48 @@
 			<label index="bulkact_five">Markierte löschen</label>
 			<label index="pid">PID</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="title">Commentaires</label>
+			<label index="newcomment">Nouveau commentaire</label>
+			<label index="nocomment">Il n'y a aucun commentaire sur cette page</label>
+			<label index="onecomment_one">Il y a</label>
+			<label index="onecomment_two">commentaire sur cette page.</label>
+			<label index="commentglobal_one">Il y a</label>
+			<label index="commentglobal_two">commentaire au total.</label>
+			<label index="commentglobalmore_one">Il y a</label>
+			<label index="commentglobalmore_two">commentaires au total.</label>
+			<label index="morecomments_one">Il y a</label>
+			<label index="morecomments_two">commentaires sur cette page.</label>
+			<label index="approve">Accepter ce commentaire</label>
+			<label index="disapprove">Refuser ce commentaire</label>
+			<label index="show">Afficher ce commentaire</label>
+			<label index="hide">Cacher ce commentaire</label>
+			<label index="edit">Editer ce commentaire</label>
+			<label index="delete">Effacer ce commentaire</label>
+			<label index="delete_txt">Voulez-vous vraiment effacer ce commentaire?</label>
+			<label index="id">ID</label>
+			<label index="date">Date</label>
+			<label index="name">Nom</label>
+			<label index="comment">Commentaire</label>
+			<label index="approveboth">Accepter/Refuser</label>
+			<label index="hideshow">Cacher/Afficher</label>
+			<label index="edittwo">Editer</label>
+			<label index="deletetwo">Effacer</label>
+			<label index="orderby">Trier par:</label>
+			<label index="orderid">id</label>
+			<label index="orderdate">date</label>
+			<label index="orderapproved">accepté</label>
+			<label index="asc">ascendant</label>
+			<label index="desc">descendant</label>
+			<label index="go">Trier!</label>
+			<label index="more_records">Afficher plus de commentaires.</label>
+			<label index="bulkact">Traitement par lots:</label>
+			<label index="bulkact_one">Approuver</label>
+			<label index="bulkact_two">Ne pas approuver</label>
+			<label index="bulkact_three">Cacher</label>
+			<label index="bulkact_four">Indiquer</label>
+			<label index="bulkact_five">Supprimer</label>
+			<label index="pid">PID</label>
+		</languageKey>
 	</data>
 </T3locallang>

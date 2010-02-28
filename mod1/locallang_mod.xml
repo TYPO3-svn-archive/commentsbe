@@ -15,5 +15,10 @@
 			<label index="mlang_labels_tabdescr">Zeigt die Kommentare Ihrer Seite in einem seperaten Backend Module an</label>
 			<label index="mlang_labels_tablabel">Ihre Kommentare</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="mlang_tabs_tab">Commentaires</label>
+			<label index="mlang_labels_tabdescr">Affiche les commentaires de votre site dans un module Backend</label>
+			<label index="mlang_labels_tablabel">Consulter vos commentaires</label>
+		</languageKey>
 	</data>
 </T3locallang>
