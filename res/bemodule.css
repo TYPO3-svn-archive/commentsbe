@@ -25,7 +25,7 @@ table.commentsbe tr td {
 }
 
 table.commentsbe tr th.id {
-  padding: 0 4px;
+  padding: 4px 0 4px 4px;
 }
 
 table.commentsbe tr:hover {
