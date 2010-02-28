@@ -209,7 +209,16 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
             <br /><br />            
             ';
             
-            $orderby = ''.$_POST['orderby'].''.$_POST['ascdesc'];
+            $order_arr = array("uid","crdate","approved");
+            $sort_arr = array("asc","desc");
+            
+            if(in_array($_POST['orderby'],$order_arr) && in_array($_POST['ascdesc'],$sort_arr)) {
+              $orderby = ''.$_POST['orderby'].''.$_POST['ascdesc'];
+            }   
+            
+            else {
+              $orderby = '';
+            }           
             
             if($orderby == '') {
               $orderby = 'uid ASC';
@@ -222,7 +231,11 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
             if($_POST['actmul']) {            
               $fields = $_POST['fields'];
               if($fields != '') {
-                $fields_new = implode(",",$fields);
+                
+                $fields_new = '';
+                foreach($fields as $field)$fields_new .= ','.intval($field);
+                $fields_new = substr($fields_new,1);
+                
                 // Approve
                 if($_POST['bulkact'] == '1') {                              
                   $upd = $GLOBALS['TYPO3_DB']->sql(TYPO3_db, 'UPDATE tx_comments_comments SET approved="1" WHERE uid IN ('.$fields_new.')');
@@ -295,11 +308,8 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
           $content .= '
             <table class="commentsbe">
               <tr>
-                <th class="id">'.$LANG->getLL('id').'</th>';
-                if($pid == '0') {
-                  $content .= '<th>'.$LANG->getLL('pid').'</th>';
-                }                   
-          $content .= '
+                <th class="id">'.$LANG->getLL('id').'</th>
+                <th>'.$LANG->getLL('pid').'</th>
                 <th>'.$LANG->getLL('date').'</th>
                 <th>'.$LANG->getLL('name').'</th>
                 <th>'.$LANG->getLL('comment').'</th>
@@ -347,13 +357,8 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
               $content .= '
                                           
               <tr>
-                <td class="img">'.$editUid.'</td>';
-                
-                if($pid == '0') {
-                  $content .= '<td>'.$pid_record.'</td>';
-                }  
-                
-                $content .= '
+                <td class="img">'.$editUid.'</td>
+                <td>'.$pid_record.'</td>
                 <td class="date">'.$time.'</td>
                 <td class="name">'.$name.'</td>
                 <td>'.$comment_txt_crop.'</td>

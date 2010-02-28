@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "commentsbe".
 #
-# Auto generated 28-02-2010 19:46
+# Auto generated 28-02-2010 19:50
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Adds a Backend Module for the Commenting system Extension to edit the comments.',
 	'category' => 'module',
 	'shy' => 0,
-	'version' => '0.0.2',
+	'version' => '0.0.3-dev',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
