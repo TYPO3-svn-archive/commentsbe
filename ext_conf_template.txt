@@ -1,0 +1,8 @@
+# cat=basic; type=string; label=Max Show records: How much comments should be displayed
+max_records = 
+
+# cat=basic; type=string; label=Add records per Click: How much records should be added if "Show more comments" is clicked
+add_records = 
+
+# cat=basic; type=string; label=Comment crop: Set the crop size of the comment field in the backend
+text_crop = 55
