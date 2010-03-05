@@ -33,12 +33,6 @@
 			<label index="hideshow">Hide/Show</label>
 			<label index="edittwo">Edit</label>
 			<label index="deletetwo">Delete</label>
-			<label index="orderby">Order by:</label>
-			<label index="orderid">id</label>
-			<label index="orderdate">date</label>
-			<label index="orderapproved">approved</label>
-			<label index="asc">ascending</label>
-			<label index="desc">descending</label>
 			<label index="go">Go!</label>
 			<label index="more_records">Show more comments</label>
 			<label index="bulkact">Bulk actions:</label>
@@ -77,11 +71,6 @@
 			<label index="hideshow">(nicht) anzeigen</label>
 			<label index="edittwo">Bearbeiten</label>
 			<label index="deletetwo">Löschen</label>
-			<label index="orderby">Sortieren nach:</label>
-			<label index="orderid">id</label>
-			<label index="orderdate">datum</label>
-			<label index="asc">aufsteigend</label>
-			<label index="desc">absteigend</label>
 			<label index="orderapproved">freigeschaltet</label>
 			<label index="go">Go!</label>
 			<label index="more_records">Weitere Kommentare anzeigen</label>

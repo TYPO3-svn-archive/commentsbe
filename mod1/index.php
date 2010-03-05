@@ -72,17 +72,46 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
 
 						// Draw the header.
 						$this->doc = t3lib_div::makeInstance('bigDoc');
-						$this->doc->styleSheetFile2=$GLOBALS["temp_modPath"].'../typo3conf/ext/commentsbe/res/bemodule.css';
+						$this->doc->styleSheetFile2=$GLOBALS["temp_modPath"].'../typo3conf/ext/commentsbe/res/css/bemodule.css';
 						$this->doc->backPath = $BACK_PATH;
 						$this->doc->form='<form action="" method="post" enctype="multipart/form-data">';
 
 						// JavaScript
 						$this->doc->JScode = '
+						<script src="../typo3conf/ext/commentsbe/res/js/jquery.js" type="text/javascript"></script>
+						<script type="text/javascript" src="../typo3conf/ext/commentsbe/res/js/jquery.tablesorter.js"></script> 
 							<script language="javascript" type="text/javascript">
 								script_ended = 0;
 								function jumpToUrl(URL)	{
 									document.location = URL;
 								}
+								
+								$(document).ready(function() 
+                    { 
+                        $("#tablesorter-demo").tablesorter({
+                          sortList:[[0,0],[1,0],[3,0],[5,0],[6,0]],
+                          widgets: [\'zebra\'],
+                          headers: {
+                            2: {
+                              sorter: false
+                            },
+                            4: {
+                              sorter: false
+                            },
+                            7: {
+                              sorter: false
+                            }, 
+                            8: {
+                              sorter: false
+                            },
+                            9: {
+                              sorter: false
+                            }
+                          }
+                        });
+                    } 
+                ); 
+								
 							</script>
 						';
 						$this->doc->postCode='
@@ -158,74 +187,6 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
             } else {
               $startrow = (int)$_GET['startrow'];
             } 
-                                        
-            $content .= '
-            '.$LANG->getLL('orderby').' 
-            <select name="orderby" size="1">
-              ';
-              if($_POST['orderby'] == 'uid') {
-                $content .= '<option value="uid" selected="selected">'.$LANG->getLL('orderid').'</option>';
-              }
-              else {
-                $content .= '<option value="uid">'.$LANG->getLL('orderid').'</option>';
-              }
-              
-              if($_POST['orderby'] == 'crdate') {
-                $content .= '<option value="crdate" selected="selected">'.$LANG->getLL('orderdate').'</option>';
-              }
-              else {
-                $content .= '<option value="crdate">'.$LANG->getLL('orderdate').'</option>';
-              }
-              
-              if($_POST['orderby'] == 'approved') {
-                $content .= '<option value="approved" selected="selected">'.$LANG->getLL('orderapproved').'</option>';
-              }
-              else {
-                $content .= '<option value="approved">'.$LANG->getLL('orderapproved').'</option>';
-              }
-              
-              $content .= '
-            </select>
-            
-            <select name="ascdesc" size="1">';
-            
-            if($_POST['ascdesc'] == 'asc') {
-              $content .= '<option value="asc" selected="selected">'.$LANG->getLL('asc').'</option>';  
-            }
-            else {
-              $content .= '<option value="asc">'.$LANG->getLL('asc').'</option>';
-            }
-            if($_POST['ascdesc'] == 'desc') {
-              $content .= '<option value="desc" selected="selected">'.$LANG->getLL('desc').'</option>';
-            }
-            else {
-              $content .= '<option value="desc">'.$LANG->getLL('desc').'</option>';
-            }
-            
-            $content .= '
-            </select>
-            
-            <input type="submit" value="'.$LANG->getLL('go').'" />
-            <br /><br />            
-            ';
-            
-            $order_arr = array("uid","crdate","approved");
-            $sort_arr = array("asc","desc");
-            
-            if(in_array($_POST['orderby'],$order_arr) && in_array($_POST['ascdesc'],$sort_arr)) {
-              $orderby = ''.$_POST['orderby'].''.$_POST['ascdesc'];
-            }   
-            
-            else {
-              $orderby = '';
-            }           
-            
-            if($orderby == '') {
-              $orderby = 'uid ASC';
-            }
-            else {
-              $orderby = ''.$_POST['orderby'].' '.$_POST['ascdesc'];
-            }
             
             // Bulk actions
             if($_POST['actmul']) {            
@@ -261,18 +222,18 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
 					  
 						// Show all comments
             if($pid == '0') {
-              $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0','',$orderby,$startrow);
+              $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0','','',$startrow);
             }
             else {
-              $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0 AND pid='.$pid.'','',$orderby,$startrow);
+              $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0 AND pid='.$pid.'','','',$startrow);
             }
             
             // Get all records
             if($pid == '0') {
-              $res2 = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0','',$orderby);
+              $res2 = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0');
             }
             else {
-              $res2 = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0 AND pid='.$pid.'','',$orderby);
+              $res2 = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_comments_comments','deleted=0 AND pid='.$pid.'');
             }
             
             $num_rows = mysql_num_rows($res); 
@@ -306,7 +267,8 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
           // Show Table Head only if at least 1 Comment exists.
           if($num_rows2 >= '1') {  
           $content .= '
-            <table class="commentsbe">
+            <table id="tablesorter-demo" class="tablesorter">
+            <thead>
               <tr>
                 <th class="id">'.$LANG->getLL('id').'</th>
                 <th>'.$LANG->getLL('pid').'</th>
@@ -318,7 +280,8 @@ class  tx_commentsbe_module1 extends t3lib_SCbase {
                 <th>'.$LANG->getLL('edittwo').'</th>
                 <th>'.$LANG->getLL('deletetwo').'</th>
                 <th>&nbsp;</th>
-              </tr>';
+              </tr>
+              </thead>';
               }
                         
               while($row=mysql_fetch_assoc($res)) {
