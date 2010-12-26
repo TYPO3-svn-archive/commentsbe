@@ -1,8 +1,11 @@
-# cat=basic; type=string; label=Max Show records: How much comments should be displayed
-max_records = 
-
-# cat=basic; type=string; label=Add records per Click: How much records should be added if "Show more comments" is clicked
-add_records = 
+# cat=basic; type=string; label=Max Show records: How much comments should be displayed per page
+max_records = 5
 
 # cat=basic; type=string; label=Comment crop: Set the crop size of the comment field in the backend
 text_crop = 55
+
+# cat=basic; type=boolean; label=Show comments in subpages: If activated, lists also comments in subpages of the actual page
+show_sub = 1
+
+# cat=basic; type=string; label=Select values: The select values which appear in the selectbox in the BE module (comma separated list)
+select_val = 5,10,20,30,100
